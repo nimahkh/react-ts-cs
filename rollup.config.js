@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import sass from "rollup-plugin-sass";
 import copy from "rollup-plugin-copy";
+import alias from "rollup-plugin-alias";
 
 export default {
   input: ["src/index.ts", "src/TestComponent/index.ts"],
@@ -10,30 +11,35 @@ export default {
     {
       dir: "build",
       format: "cjs",
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   preserveModules: true, // Important if we want to code split
   plugins: [
+    alias({
+      entries: {
+        TestComponent: __dirname + "/build/TestComponent/TestComponent",
+      },
+    }),
     peerDepsExternal(),
     commonjs(),
     typescript({ useTsconfigDeclarationDir: true }),
     sass({
-      insert: true
+      insert: true,
     }),
     copy({
       targets: [
         {
           src: "src/variables.scss",
           dest: "build",
-          rename: "variables.scss"
+          rename: "variables.scss",
         },
         {
           src: "src/typography.scss",
           dest: "build",
-          rename: "typography.scss"
-        }
-      ]
-    })
-  ]
+          rename: "typography.scss",
+        },
+      ],
+    }),
+  ],
 };

@@ -1,6 +1,6 @@
 {
   "name": "@nimahkh/react-ts-codesplit",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "main": "build/index.js",
   "files": [
     "build"
@@ -46,6 +46,7 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
+    "rollup-plugin-alias": "^2.2.0",
     "rollup-plugin-sass": "^1.2.2"
   }
 }
