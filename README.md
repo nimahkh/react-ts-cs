@@ -88,7 +88,7 @@ Usage of the component (after the library installed as a dependency into another
 
 ```TSX
 import React from "react";
-import { TestComponent } from "react-component-library";
+import TestComponent from "@nimahkh/react-ts-codesplit/build/TestComponent/TestComponent"
 
 const App = () => (
   <div className="app-container">
@@ -99,7 +99,21 @@ const App = () => (
 
 export default App;
 ```
+Or without code spliting 
 
+```TSX
+import React from "react";
+import {TestComponent} from "@nimahkh/react-ts-codesplit"
+
+const App = () => (
+  <div className="app-container">
+    <h1>Hello I'm consuming the component library</h1>
+    <TestComponent theme="primary" />
+  </div>
+);
+
+export default App;
+```
 ### Using Component Library SASS Variables
 
 I've found that it's helpful to export SASS variables to projects consuming the library. As such, I've added the `rollup-plugin-copy` NPM package and used it to copy the `typography.scss` and `variables.scss` into the `build` directory as part of the Rollup bundle process. This allows you to use these variables in your projects consuming the component library.
